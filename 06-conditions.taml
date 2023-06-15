@@ -13,7 +13,7 @@
         msg: I am a Debian Machine 
       when: ansible_distribution == "Debian"
 
-     - name: Run this action 
+    - name: Run this action 
       ansible.builtin.debug:
         msg: I am learning Ansible and I will only print when action is true  
       when: action
