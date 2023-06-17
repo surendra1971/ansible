@@ -8,7 +8,7 @@
     name: common
     tasks_from: download
 
-
+ 
 - name: Copy the frontend component which is downloaded on the remote machines nginx path 
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/static/
