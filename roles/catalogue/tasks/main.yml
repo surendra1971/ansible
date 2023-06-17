@@ -6,10 +6,10 @@
     name: nodejs 
     state: present  
 
-# - name: Creating App User 
-#   ansible.builtin.user:
-#     name: "{{APPUSER}}" 
-#     comment: Roboshop Application User
+- name: Creating App User 
+  ansible.builtin.user:
+    name: "{{APPUSER}}" 
+    comment: Roboshop Application User
 
 # - name: Download and extracting {{ COMPONENT }}
 #   ansible.builtin.include_role:
