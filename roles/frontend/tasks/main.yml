@@ -8,7 +8,11 @@
     name: common
     tasks_from: download
 
- 
+- name: Cleanup of Old HTML Content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
+
 - name: Copy the frontend component which is downloaded on the remote machines nginx path 
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/static/
@@ -17,7 +21,7 @@
 # If the source you're trying to copy is on the remote machine, ensure you give the remote_src as yes
 
 - name: Copying the proxy config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
@@ -26,3 +30,6 @@
     name: nginx 
     state: restarted
     enabled: true
+
+- name: Configuring Node Name Repo 
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
