@@ -35,3 +35,11 @@
   community.mongodb.mongodb_shell:
     file: "/tmp/{{COMPONENT}}-main/users.js"
     idempotent: yes
+
+- name: Injecting the MongoDB Schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/{{COMPONENT}}-main/{{ item }}.js"
+    idempotent: yes 
+  loop: 
+    - catalogue 
+    - users
