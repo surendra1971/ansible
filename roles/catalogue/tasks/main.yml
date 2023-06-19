@@ -23,3 +23,11 @@
     owner: "{{APPUSER}}"
     group: "{{APPUSER}}"
     remote_src: yes
+
+- name: Restarting {{COMPONENT}} 
+  ansible.builtin.systemd:
+    name: "{{COMPONENT}}" 
+    state: restarted
+    enabled: true
+    daemon_reload: true
+
