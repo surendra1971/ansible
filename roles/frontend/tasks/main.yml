@@ -30,3 +30,12 @@
     name: nginx 
     state: restarted
     enabled: true
+
+- name: Genearting Artifacts with npm install
+  community.general.npm:
+    path: /home/{{ APPUSER }}/{{ COMPONENT }}/
+
+- name: Copying the systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/{{COMPONENT}}.service
