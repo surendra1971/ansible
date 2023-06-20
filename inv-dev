@@ -2,7 +2,7 @@
 frontend-dev.roboshop.internal
 
 [mongodb]
-mongodb-dev.roboshop.internal
+mongodb-dev
 
 [catalogue]
 catalogue-dev.roboshop.internal
