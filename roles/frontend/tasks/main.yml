@@ -13,7 +13,7 @@
     path: /usr/share/nginx/html/
     state: absent
 
-- name: Copy the frontend  component which is downloaded on the remote machines nginx path 
+- name: Copy the frontend component which is downloaded on the remote machines nginx path 
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/static/
     dest: /usr/share/nginx/html/
@@ -21,7 +21,7 @@
 # If the source you're trying to copy is on the remote machine, ensure you give the remote_src as yes
 
 - name: Copying the proxy config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
@@ -31,11 +31,5 @@
     state: restarted
     enabled: true
 
-- name: Genearting Artifacts with npm install
-  community.general.npm:
-    path: /home/{{ APPUSER }}/{{ COMPONENT }}/
-
-- name: Copying the systemd file
-  ansible.builtin.template:
-    src: systemd.service
-    dest: /etc/systemd/system/{{COMPONENT}}.service
+- name: Configuring Node Name Repo 
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
